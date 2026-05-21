@@ -4,18 +4,29 @@ var NUMERO_WHATSAPP = '212629098239';
 
 var LIVRAISON_GRATUITE = 1500;
 
-var PRODUITS = [
-  { id: 1, nom: 'SURVÊTE ELITE',    categorie: 'survete', prix: 450, description: 'Ensemble complet haut & bas',      image: '', tailles: ['S','M','L','XL','XXL'], couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Blanc', css: '#f0f0f0' }, { nom: 'Gris', css: '#888' }] },
-  { id: 2, nom: 'SURVÊTE PRO',      categorie: 'survete', prix: 520, description: 'Performance & style urbain',        image: '', tailles: ['S','M','L','XL'],     couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Navy', css: '#1a2744' }, { nom: 'Rouge', css: '#c22' }] },
-  { id: 3, nom: 'SURVÊTE URBAN',    categorie: 'survete', prix: 390, description: 'Streetwear authentique marocain',  image: '', tailles: ['M','L','XL','XXL'],   couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Kaki', css: '#6b7355'  }, { nom: 'Marron', css: '#6b4c3b' }] },
-  { id: 4, nom: 'JACKET STREET',    categorie: 'jacket',  prix: 380, description: 'Coupe moderne oversize',           image: '', tailles: ['S','M','L','XL'],     couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Blanc', css: '#f0f0f0' }, { nom: 'Beige', css: '#c8b89a' }] },
-  { id: 5, nom: 'JACKET SPORT',     categorie: 'jacket',  prix: 420, description: 'Imperméable & léger',              image: '', tailles: ['S','M','L','XL','XXL'], couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Bleu', css: '#2255aa'  }, { nom: 'Vert', css: '#2d6a4f' }] },
-  { id: 6, nom: 'JACKET WIND',      categorie: 'jacket',  prix: 350, description: 'Anti-vent haute performance',      image: '', tailles: ['M','L','XL'],         couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Gris', css: '#888'    }, { nom: 'Rouge', css: '#c22' }] },
-  { id: 7, nom: 'HOODIE CLASSIC',   categorie: 'hoodie',  prix: 280, description: 'Coton premium 400g',               image: '', tailles: ['S','M','L','XL','XXL'], couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Blanc', css: '#f0f0f0' }, { nom: 'Gris', css: '#888' }, { nom: 'Navy', css: '#1a2744' }] },
-  { id: 8, nom: 'HOODIE OVERSIZED', categorie: 'hoodie',  prix: 320, description: 'Fit relaxed tendance',             image: '', tailles: ['S','M','L','XL'],     couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Beige', css: '#c8b89a' }, { nom: 'Kaki', css: '#6b7355' }] },
-  { id: 9, nom: 'HOODIE TECH',      categorie: 'hoodie',  prix: 360, description: 'Matière technique sportswear',     image: '', tailles: ['M','L','XL','XXL'],   couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Blanc', css: '#f0f0f0' }, { nom: 'Bleu', css: '#2255aa' }] }
-];
+// // Lire les images depuis le HTML
+function lireImagesHTML() {
+  var spans = document.querySelectorAll('#data-produits span');
+  var images = {};
+  spans.forEach(function(span) {
+    images[span.dataset.id] = span.dataset.image;
+  });
+  return images;
+}
 
+var imagesHTML = lireImagesHTML();
+
+var PRODUITS = [
+  { id: 1, nom: 'SURVÊTE ELITE',    categorie: 'survete', prix: 450, description: 'Ensemble complet haut & bas',     image: imagesHTML[1] || '', tailles: ['S','M','L','XL','XXL'], couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Blanc', css: '#f0f0f0' }, { nom: 'Gris', css: '#888' }] },
+  { id: 2, nom: 'SURVÊTE PRO',      categorie: 'survete', prix: 520, description: 'Performance & style urbain',       image: imagesHTML[2] || '', tailles: ['S','M','L','XL'],     couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Navy', css: '#1a2744' }, { nom: 'Rouge', css: '#c22' }] },
+  { id: 3, nom: 'SURVÊTE URBAN',    categorie: 'survete', prix: 390, description: 'Streetwear authentique marocain', image: imagesHTML[3] || '', tailles: ['M','L','XL','XXL'],   couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Kaki', css: '#6b7355' }, { nom: 'Marron', css: '#6b4c3b' }] },
+  { id: 4, nom: 'JACKET STREET',    categorie: 'jacket',  prix: 380, description: 'Coupe moderne oversize',          image: imagesHTML[4] || '', tailles: ['S','M','L','XL'],     couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Blanc', css: '#f0f0f0' }, { nom: 'Beige', css: '#c8b89a' }] },
+  { id: 5, nom: 'JACKET SPORT',     categorie: 'jacket',  prix: 420, description: 'Imperméable & léger',             image: imagesHTML[5] || '', tailles: ['S','M','L','XL','XXL'], couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Bleu', css: '#2255aa' }, { nom: 'Vert', css: '#2d6a4f' }] },
+  { id: 6, nom: 'JACKET WIND',      categorie: 'jacket',  prix: 350, description: 'Anti-vent haute performance',     image: imagesHTML[6] || '', tailles: ['M','L','XL'],         couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Gris', css: '#888' },   { nom: 'Rouge', css: '#c22' }] },
+  { id: 7, nom: 'HOODIE CLASSIC',   categorie: 'hoodie',  prix: 280, description: 'Coton premium 400g',              image: imagesHTML[7] || '', tailles: ['S','M','L','XL','XXL'], couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Blanc', css: '#f0f0f0' }, { nom: 'Gris', css: '#888' }, { nom: 'Navy', css: '#1a2744' }] },
+  { id: 8, nom: 'HOODIE OVERSIZED', categorie: 'hoodie',  prix: 320, description: 'Fit relaxed tendance',            image: imagesHTML[8] || '', tailles: ['S','M','L','XL'],     couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Beige', css: '#c8b89a' }, { nom: 'Kaki', css: '#6b7355' }] },
+  { id: 9, nom: 'HOODIE TECH',      categorie: 'hoodie',  prix: 360, description: 'Matière technique sportswear',    image: imagesHTML[9] || '', tailles: ['M','L','XL','XXL'],   couleurs: [{ nom: 'Noir', css: '#111' }, { nom: 'Blanc', css: '#f0f0f0' }, { nom: 'Bleu', css: '#2255aa' }] }
+];
 var panier = {};
 var taillesChoisies = {};
 var couleursChoisies = {};
